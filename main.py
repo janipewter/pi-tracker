@@ -42,8 +42,7 @@ def main():
 					}).sync()
 					print(packet.time, "timetoken", envelope.result.timetoken, "success", packet.position())
 					time.sleep(float(vars(args)["frequency"])) # sleep for set frequency
-				except PubNubException as e:
-					PubNubException.handle_exception(e)
+				except:
 					print("Exception in the pubnub send, hopefully we will retry in 1 second")
 					time.sleep(1)
 					continue
