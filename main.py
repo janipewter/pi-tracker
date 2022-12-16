@@ -6,6 +6,7 @@ import time
 import string
 import pynmea2
 import argparse
+import datetime as dt
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
 from pubnub.exceptions import PubNubException
@@ -43,18 +44,16 @@ def main():
 					print(packet.time, "timetoken", envelope.result.timetoken, "success", packet.position())
 					time.sleep(float(vars(args)["frequency"])) # sleep for set frequency
 				except:
-					print("Exception in the pubnub send, hopefully we will retry in 1 second")
+					print(dt.datetime.utcnow().strftime("%FT%TZ"), "exception in the pubnub send, hopefully we will retry in 1 second")
 					time.sleep(1)
 					continue
 				else:
-					print("Breaking from internal loop")
+					print(dt.datetime.utcnow().strftime("%FT%TZ"), "breaking from internal loop")
 					break
 		else:
-			print("No GPS fix")
+			print(dt.datetime.utcnow().strftime("%FT%TZ"), "no GPS fix")
 			time.sleep(1)
 			continue
-
-		
 
 
 if __name__ == "__main__":
