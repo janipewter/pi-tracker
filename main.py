@@ -52,6 +52,7 @@ def main():
 					break
 		else:
 			print("No GPS fix")
+			time.sleep(1)
 			continue
 
 		
