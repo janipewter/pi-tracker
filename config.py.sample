@@ -1,0 +1,3 @@
+subscribe_key = "your-pubnub-subscribe-key"
+publish_key = "your-pubnub-publish-key"
+uuid = "your-uuid" # generate at uuidgenerator.net
