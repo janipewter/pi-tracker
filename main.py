@@ -48,10 +48,10 @@ def main():
 					time.sleep(1)
 					continue
 				else:
-					print(dt.datetime.utcnow().strftime("%FT%TZ"), "breaking from internal loop")
+					# print(dt.datetime.utcnow().strftime("%FT%TZ"), "breaking from internal loop")
 					break
 		else:
-			print(dt.datetime.utcnow().strftime("%FT%TZ"), "no GPS fix")
+			print(dt.datetime.utcnow().strftime("%FT%T.000Z"), "no GPS fix")
 			time.sleep(1)
 			continue
 
