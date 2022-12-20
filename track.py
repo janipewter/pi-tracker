@@ -1,16 +1,11 @@
 #!/usr/bin/env python3
 import config
 import gpsd
-import serial
 import time
-import string
-import pynmea2
 import argparse
 import datetime as dt
 from pubnub.pnconfiguration import PNConfiguration
 from pubnub.pubnub import PubNub
-from pubnub.exceptions import PubNubException
-import pdb
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-f", "--frequency", required=False, type=int, default=5, choices=range(1,601), metavar="[1-600]",
