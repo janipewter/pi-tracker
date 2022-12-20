@@ -12,8 +12,12 @@ from pubnub.pubnub import PubNub
 from pubnub.exceptions import PubNubException
 import pdb
 
-pnChannel = "drifter-tracker";
+parser = argparse.ArgumentParser()
+parser.add_argument("-f", "--frequency", required=False, type=int, default=5, choices=range(1,601), metavar="[1-600]",
+                    help="number of seconds between logs (default is 5)")
+args = parser.parse_args()
 
+pnChannel = "drifter-tracker";
 pnconfig = PNConfiguration()
 pnconfig.subscribe_key = config.subscribe_key
 pnconfig.publish_key = config.publish_key
@@ -22,18 +26,12 @@ pnconfig.ssl = False
 pubnub = PubNub(pnconfig)
 pubnub.subscribe().channels(pnChannel).execute()
 
-parser = argparse.ArgumentParser()
-parser.add_argument("-f", "--frequency", required=False, type=int, default=5, choices=range(1,601), metavar="[1-600]",
-                    help="number of seconds between logs (default is 5)")
-args = parser.parse_args()
-
 
 def main():
 	print("Running with", vars(args)["frequency"], "second sleep between position sends")
 	while True:
 		gpsd.connect()
 		packet = gpsd.get_current()
-
 		if packet.time and packet.lat and packet.lon:
 			while True:
 				try:
